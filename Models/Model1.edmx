@@ -13,11 +13,10 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
         </EntityType>-->
         <EntityType Name="Freelencer">
           <Key>
-            <PropertyRef Name="Freelencer_ID" />
+            <PropertyRef Name="f_no" />
           </Key>
           <Property Name="f_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PreFix" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Freelencer_ID" Type="varchar" MaxLength="57" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Freelencer_ID" Type="varchar" MaxLength="8" StoreGeneratedPattern="Computed" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="14" />
@@ -29,6 +28,8 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
           <Property Name="NetIncome" Type="real" />
           <Property Name="rating" Type="real" />
           <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isEmailVarified" Type="int" />
+          <Property Name="pass" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Recruiter">
           <Key>
@@ -57,11 +58,10 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
       <Schema Namespace="HiredHuntersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Freelencer">
           <Key>
-            <PropertyRef Name="Freelencer_ID" />
+            <PropertyRef Name="f_no" />
           </Key>
           <Property Name="f_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PreFix" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Freelencer_ID" Type="String" MaxLength="57" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Freelencer_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
@@ -73,6 +73,8 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
           <Property Name="NetIncome" Type="Single" />
           <Property Name="rating" Type="Single" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isEmailVarified" Type="Int32" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Recruiter">
           <Key>
@@ -90,7 +92,7 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
           <Property Name="Total_job_Posted" Type="Int32" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="HiredHuntersEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HiredHuntersEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Freelencers" EntityType="Self.Freelencer" />
           <EntitySet Name="Recruiters" EntityType="Self.Recruiter" />
         </EntityContainer>
@@ -99,12 +101,11 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HiredHuntersModelStoreContainer" CdmEntityContainer="HiredHuntersEntities">
+        <EntityContainerMapping StorageEntityContainer="HiredHuntersModelStoreContainer" CdmEntityContainer="HiredHuntersEntities1">
           <EntitySetMapping Name="Freelencers">
             <EntityTypeMapping TypeName="HiredHuntersModel.Freelencer">
               <MappingFragment StoreEntitySet="Freelencer">
                 <ScalarProperty Name="f_no" ColumnName="f_no" />
-                <ScalarProperty Name="PreFix" ColumnName="PreFix" />
                 <ScalarProperty Name="Freelencer_ID" ColumnName="Freelencer_ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -117,6 +118,8 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
                 <ScalarProperty Name="NetIncome" ColumnName="NetIncome" />
                 <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="isEmailVarified" ColumnName="isEmailVarified" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

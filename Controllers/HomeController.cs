@@ -26,5 +26,10 @@ namespace HiredHunters.Controllers
 
             return View();
         }
+
+        public ActionResult SignUP_Index()
+        {
+            return View();
+        }
     }
 }

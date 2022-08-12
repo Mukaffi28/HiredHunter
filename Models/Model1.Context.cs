@@ -13,10 +13,10 @@ namespace HiredHunters.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HiredHuntersEntities : DbContext
+    public partial class HiredHuntersEntities1 : DbContext
     {
-        public HiredHuntersEntities()
-            : base("name=HiredHuntersEntities")
+        public HiredHuntersEntities1()
+            : base("name=HiredHuntersEntities1")
         {
         }
     

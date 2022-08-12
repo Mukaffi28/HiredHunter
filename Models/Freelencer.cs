@@ -15,7 +15,6 @@ namespace HiredHunters.Models
     public partial class Freelencer
     {
         public int f_no { get; set; }
-        public string PreFix { get; set; }
         public string Freelencer_ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -28,5 +27,7 @@ namespace HiredHunters.Models
         public Nullable<float> NetIncome { get; set; }
         public Nullable<float> rating { get; set; }
         public string username { get; set; }
+        public Nullable<int> isEmailVarified { get; set; }
+        public string pass { get; set; }
     }
 }
