@@ -26,6 +26,7 @@ namespace HiredHunters.Models
         }
     
         public virtual DbSet<Freelencer> Freelencers { get; set; }
+        public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<Recruiter> Recruiters { get; set; }
     }
 }

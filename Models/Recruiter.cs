@@ -14,16 +14,26 @@ namespace HiredHunters.Models
     
     public partial class Recruiter
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Recruiter()
+        {
+            this.Jobs = new HashSet<Job>();
+        }
+    
         public int r_no { get; set; }
-        public string PreFix { get; set; }
         public string Recruiter_ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Profilepic { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public Nullable<System.DateTime> JoiningDate { get; set; }
         public string R_address { get; set; }
         public Nullable<float> Rating { get; set; }
         public Nullable<int> Total_job_Posted { get; set; }
-        public string username { get; set; }
+        public string pass { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Job> Jobs { get; set; }
     }
 }
