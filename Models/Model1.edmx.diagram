@@ -4,9 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7262b4245ed94d219648cb000174732d" Name="Diagram1">
-        <EntityTypeShape EntityType="HiredHuntersModel.Freelencer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HiredHuntersModel.Recruiter" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="9f7024132f6a4f05a2aafa8a18c4c2c6" Name="Diagram1">
+        <EntityTypeShape EntityType="HiredHuntersModel.Freelencer" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HiredHuntersModel.Job" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HiredHuntersModel.Recruiter" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="HiredHuntersModel.FK__Job__Recruiter_I__2A164134" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
