@@ -15,8 +15,7 @@ namespace HiredHunters.Models
     
     public partial class HiredHuntersEntities1 : DbContext
     {
-        public HiredHuntersEntities1()
-            : base("name=HiredHuntersEntities1")
+        public HiredHuntersEntities1(): base("name=HiredHuntersEntities2")
         {
         }
     
@@ -28,5 +27,6 @@ namespace HiredHunters.Models
         public virtual DbSet<Freelencer> Freelencers { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<Recruiter> Recruiters { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
