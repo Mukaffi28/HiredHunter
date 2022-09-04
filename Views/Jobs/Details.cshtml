@@ -4,8 +4,6 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-<h2>Details</h2>
 <main>
 
     <!-- Hero Area Start-->
@@ -33,7 +31,7 @@
                     <div class="single-job-items mb-50">
                         <div class="job-items">
                             <div class="company-img company-img-details">
-                                <a href="#"> <img src="~/assets/img/icon/job-list1.png" />
+                             
                             </div>
 
                             <div class="job-tittle">
@@ -41,7 +39,7 @@
                                     <h4>@Html.DisplayFor(model => model.Title)</h4>
                                 </a>
                                 <ul>
-                                    <li>Creative Agency</li>
+                                    
                                     <li><i class="fas fa-map-marker-alt"></i>@Html.DisplayFor(model => model.Locations), Bangladesh</li>
                                     <li>$@Html.DisplayFor(model => model.AskingPrice)</li>
                                 </ul>
@@ -113,13 +111,11 @@
                     <div class="post-details4  mb-50">
                         <!-- Small Section Tittle -->
                         <div class="small-section-tittle">
-                            <h4>Company Information</h4>
+                            <h4>Recuiter Information</h4>
                         </div>
-                        <span>Colorlib</span>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                        
                         <ul>
                             <li>Name: <span>@Html.DisplayFor(model => model.Recruiter.FirstName) </span></li>
-                            <li>Web : <span> </span></li>
                             <li>Email: <span>@Html.DisplayFor(model => model.Recruiter.Email)</span></li>
                         </ul>
                     </div>

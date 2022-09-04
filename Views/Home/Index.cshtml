@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<HiredHunters.Models.Job>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -132,89 +133,64 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-xl-10">
-                    <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                    @foreach (var item in Model)
+                    {
+
+                        if (item.isAvailable == 1)
+                        {
+                            int daysLeft = 0;
+                            if (item.CreateDate.HasValue)
+                            {
+                                DateTime CreateDate = (DateTime)item.CreateDate;
+                                daysLeft = (DateTime.Today - CreateDate).Days;
+                            }
+                            string availablity;
+
+                            if (item.isAvailable == 0)
+                            {
+
+                                availablity = "Not Available";
+
+                            }
+                            else
+                            {
+                                availablity = "Available";
+
+                            }
+
+                            <div class="single-job-items mb-30">
+
+                                <div class="job-items">
+
+                                    <div class="job-tittle job-tittle2">
+                                        <a href="#">
+                                            <h4> Job Title: @Html.ActionLink(item.Title, "Details", new { id = item.J_no }) </h4>
+                                        </a>
+                                        <ul>
+                                            <li>RecruiterID: R @Html.DisplayFor(modelItem => item.Recruiter_ID)</li>
+                                            <li><i class="fas fa-map-marker-alt"></i>Location:@Html.DisplayFor(modelItem => item.Locations)</li>
+                                            <li>Asking Price: $@Html.DisplayFor(modelItem => item.AskingPrice)</li>
+                                            <li>Availablity:@availablity</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <span></span>
+                                <div class="items-link items-link2 f-right">
+
+                                    @Html.ActionLink("Apply now", "Apply", new { id = item.J_no }, new { @class = "btn " })
+                                    <span>@daysLeft Days ago</span>
+                                </div>
                             </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right">
-                            <a href="job_details.html">Full Time</a>
-                            <span>7 hours ago</span>
-                        </div>
-                    </div>
-                    <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"><img src="assets/img/icon/job-list2.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right">
-                            <a href="job_details.html">Full Time</a>
-                            <span>7 hours ago</span>
-                        </div>
-                    </div>
-                    <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"><img src="assets/img/icon/job-list3.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right">
-                            <a href="job_details.html">Full Time</a>
-                            <span>7 hours ago</span>
-                        </div>
-                    </div>
-                    <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"><img src="assets/img/icon/job-list4.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right">
-                            <a href="job_details.html">Full Time</a>
-                            <span>7 hours ago</span>
-                        </div>
-                    </div>
+
+                        }
+
+
+
+
+
+                    }
                 </div>
             </div>
-        </div>
     </section>
     <!-- Featured_job_end -->
     <!-- How  Apply Process Start-->
@@ -274,7 +250,7 @@
     <!-- How  Apply Process End-->
     <!-- Testimonial Start -->
     <div id="table">
-       @* <span>Testmonial</span>*@
+        @* <span>Testmonial</span>*@
 
     </div>
 
