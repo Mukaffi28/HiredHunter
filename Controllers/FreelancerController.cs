@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net;
 using System.Web.Mvc;
 
 namespace HiredHunters.Controllers
@@ -65,6 +66,7 @@ namespace HiredHunters.Controllers
                 #region Save to Database
                 using (HiredHuntersEntities1 dc = new HiredHuntersEntities1())
                 {
+                    user.DateofJoining = DateTime.Now;
                     dc.Freelencers.Add(user);
                     dc.SaveChanges();
                     //Send Email to User
@@ -108,6 +110,34 @@ namespace HiredHunters.Controllers
                 var v = dc.Freelencers.Where(a => a.PhoneNumber == number).FirstOrDefault();
                 return v != null;
             }
+        }
+        //search Freelancer
+        HiredHuntersEntities1 db = new HiredHuntersEntities1();
+        public ActionResult Search(string searching)
+        {
+            if(Session["r_no"] != null)
+            {
+                bool Status = false;
+                if (searching == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                var freelencer = db.Freelencers.Where(a => a.username.Contains(searching)).FirstOrDefault();
+                //var  freelencer = db.Freelencers.Where(x => x.username.Contains(searching));
+
+                if (freelencer == null)
+                {
+                    Status = true;
+                    //return HttpNotFound();
+                }
+                ViewBag.Status = Status;
+                return View(freelencer);
+            }
+            else
+            {
+                return RedirectToAction("Login_Index", "Home");
+            }
+
         }
     }
 }

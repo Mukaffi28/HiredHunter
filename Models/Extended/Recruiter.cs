@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HiredHunters.Models
 {
@@ -15,6 +16,10 @@ namespace HiredHunters.Models
     }
     public class UsersMetadata
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int r_no { get; set; }
+
         [Display(Name = "FirstName")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "First name required")]
         public string FirstName { get; set; }
