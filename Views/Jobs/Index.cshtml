@@ -288,7 +288,7 @@
 
                                                 <div class="job-tittle job-tittle2">
                                                     <a href="#">
-                                                        <h4> Job Title: @Html.DisplayFor(modelItem => item.Title)</h4>
+                                                        <h4> Job Title: @Html.ActionLink(item.Title, "Edit", new { id = item.J_no }) </h4>
                                                     </a>
                                                     <ul>
                                                         <li>RecruiterID: R @Html.DisplayFor(modelItem => item.Recruiter_ID)</li>
@@ -300,7 +300,7 @@
                                             </div>
                                             <span></span>
                                             <div class="items-link items-link2 f-right">
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.r_no })
+                                                
                                                 <span>@daysLeft Days ago</span>
                                             </div>
                                         </div>

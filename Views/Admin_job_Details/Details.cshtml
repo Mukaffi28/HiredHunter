@@ -38,12 +38,12 @@
                             
                             <div class="job-tittle">
                                 <a href="#">
-                                    <h4>Digital Marketer</h4>
+                                    <h4>@Html.DisplayFor(model => model.Title)</h4>
                                 </a>
                                 <ul>
                                     <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>@Html.DisplayFor(model => model.Locations), Bangladesh</li>
+                                    <li>$@Html.DisplayFor(model => model.AskingPrice)</li>
                                 </ul>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                             <div class="small-section-tittle">
                                 <h4>Job Description</h4>
                             </div>
-                            <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p>
+                            <p>@Html.DisplayFor(model => model.Details)</p>
                         </div>
                         <div class="post-details2  mb-50">
                             <!-- Small Section Tittle -->
@@ -95,12 +95,16 @@
                             <h4>Job Overview</h4>
                         </div>
                         <ul>
-                            <li>Posted date : <span>12 Aug 2019</span></li>
-                            <li>Location : <span>New York</span></li>
-                            <li>Vacancy : <span>02</span></li>
+                            @{   DateTime CreateDate = (DateTime)Model.CreateDate;
+
+                                var longDateValue = CreateDate.ToLongDateString();
+
+                            <li>Posted date : <span>  @longDateValue </span></li>
+                            <li>Location : <span>@Html.DisplayFor(model => model.Locations)</span></li>
+
                             <li>Job nature : <span>Full time</span></li>
-                            <li>Salary :  <span>$7,800 yearly</span></li>
-                            <li>Application date : <span>12 Sep 2020</span></li>
+                            <li>Salary :  <span> @Html.DisplayFor(model => model.AskingPrice) $USD</span></li>
+                                }
                         </ul>
                         <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
@@ -114,9 +118,9 @@
                         <span>Colorlib</span>
                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                         <ul>
-                            <li>Name: <span>Colorlib </span></li>
-                            <li>Web : <span> colorlib.com</span></li>
-                            <li>Email: <span>carrier.colorlib@gmail.com</span></li>
+                            <li>Name: <span>@Html.DisplayFor(model => model.Recruiter.FirstName) </span></li>
+                            <li>Web : <span> </span></li>
+                            <li>Email: <span>@Html.DisplayFor(model => model.Recruiter.Email)</span></li>
                         </ul>
                     </div>
                 </div>
