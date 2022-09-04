@@ -14,6 +14,12 @@ namespace HiredHunters.Models
     
     public partial class Freelencer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Freelencer()
+        {
+            this.Applylists = new HashSet<Applylist>();
+        }
+    
         public int f_no { get; set; }
         public string Freelencer_ID { get; set; }
         public string FirstName { get; set; }
@@ -29,5 +35,8 @@ namespace HiredHunters.Models
         public string username { get; set; }
         public Nullable<int> isEmailVarified { get; set; }
         public string pass { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Applylist> Applylists { get; set; }
     }
 }

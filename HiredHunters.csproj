@@ -139,6 +139,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Applylist.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Extended\Freelencer.cs" />
     <Compile Include="Models\Extended\Recruiter.cs" />
     <Compile Include="Models\Freelencer.cs">
@@ -449,6 +452,7 @@
     <Content Include="Views\Recr\Edit.cshtml" />
     <Content Include="Views\Recr\Index.cshtml" />
     <Content Include="Views\Freelancer\Index.cshtml" />
+
     <Content Include="Views\Admin_job_Details\Create.cshtml" />
     <Content Include="Views\Admin_job_Details\Delete.cshtml" />
     <Content Include="Views\Admin_job_Details\Details.cshtml" />
@@ -479,6 +483,10 @@
     <Content Include="Views\Admin_Mananges\Index.cshtml" />
     <Content Include="Views\Admin_Mananges\Login_Index.cshtml" />
     <Content Include="Views\Shared\logAdmin.cshtml" />
+
+    <Content Include="Views\Freelancer\Search.cshtml" />
+    <Content Include="Views\Recruiter\MyJob.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -151,5 +151,30 @@ namespace HiredHunters.Controllers
             }
             base.Dispose(disposing);
         }
+        //Apply For job
+        public ActionResult Apply(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (Session["f_no"] != null)
+            {
+                HiredHuntersEntities1 db = new HiredHuntersEntities1();
+                Applylist ap = new Applylist();
+                ap.Freelencer_ID = (int?)Session["f_no"];
+                ap.Job_ID = id;
+                ap.isgiven = 0;
+                db.Applylists.Add(ap);
+                db.SaveChanges();
+                return RedirectToAction("Index"); ;
+
+            }
+            else
+            {
+                return RedirectToAction("Login_Index", "Home");
+            }
+           
+        }
     }
 }

@@ -71,7 +71,8 @@ namespace HiredHunters.Controllers
                 {
                     if (string.Compare(Crypto.Hash(p),user.pass)==0)
                     {
-                        Session["Freelencer_ID"] = user.Freelencer_ID;
+                        Session["f_no"] = user.f_no;
+                        
                         return RedirectToAction("Index","Freelancer");
                     }
                     else
@@ -89,6 +90,11 @@ namespace HiredHunters.Controllers
                     if (string.Compare(Crypto.Hash(p), user.pass) == 0)
                     {
                         Session["r_no"] = user.r_no;
+                        Response.ClearHeaders();
+
+                        Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
+                        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                        Response.Cache.SetNoStore();
                         return RedirectToAction("Index", "Recruiter");
                     }
                     else

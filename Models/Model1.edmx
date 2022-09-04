@@ -4,7 +4,25 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
+
     <Schema Namespace="HiredHuntersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+
+      <Schema Namespace="HiredHuntersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Admin">
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="Applylist">
+          <Key>
+            <PropertyRef Name="apply_no" />
+          </Key>
+          <Property Name="apply_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Freelencer_ID" Type="int" />
+          <Property Name="Job_ID" Type="int" />
+          <Property Name="isgiven" Type="int" />
+        </EntityType>
         <EntityType Name="Freelencer">
           <Key>
             <PropertyRef Name="f_no" />
@@ -79,7 +97,35 @@ warning 6013: The table/view 'HiredHunters.dbo.manager' does not have a primary 
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+
         <Association Name="FK__Job__Recruiter_I__534D60F1">
+
+        <Association Name="FK__Applylist__Freel__46B27FE2">
+          <End Role="Freelencer" Type="Self.Freelencer" Multiplicity="0..1" />
+          <End Role="Applylist" Type="Self.Applylist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Freelencer">
+              <PropertyRef Name="f_no" />
+            </Principal>
+            <Dependent Role="Applylist">
+              <PropertyRef Name="Freelencer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applylist__Job_I__47A6A41B">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="Applylist" Type="Self.Applylist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="J_no" />
+            </Principal>
+            <Dependent Role="Applylist">
+              <PropertyRef Name="Job_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Job__Recruiter_I__2A164134">
+
           <End Role="Recruiter" Type="Self.Recruiter" Multiplicity="0..1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
           <ReferentialConstraint>
@@ -92,12 +138,25 @@ warning 6013: The table/view 'HiredHunters.dbo.manager' does not have a primary 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HiredHuntersModelStoreContainer">
+          <EntitySet Name="Applylist" EntityType="Self.Applylist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Freelencer" EntityType="Self.Freelencer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manange" EntityType="Self.Manange" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recruiter" EntityType="Self.Recruiter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+
           <AssociationSet Name="FK__Job__Recruiter_I__534D60F1" Association="Self.FK__Job__Recruiter_I__534D60F1">
+
+          <AssociationSet Name="FK__Applylist__Freel__46B27FE2" Association="Self.FK__Applylist__Freel__46B27FE2">
+            <End Role="Freelencer" EntitySet="Freelencer" />
+            <End Role="Applylist" EntitySet="Applylist" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applylist__Job_I__47A6A41B" Association="Self.FK__Applylist__Job_I__47A6A41B">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="Applylist" EntitySet="Applylist" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Job__Recruiter_I__2A164134" Association="Self.FK__Job__Recruiter_I__2A164134">
+
             <End Role="Recruiter" EntitySet="Recruiter" />
             <End Role="Job" EntitySet="Job" />
           </AssociationSet>
@@ -106,6 +165,17 @@ warning 6013: The table/view 'HiredHunters.dbo.manager' does not have a primary 
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HiredHuntersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Applylist">
+          <Key>
+            <PropertyRef Name="apply_no" />
+          </Key>
+          <Property Name="apply_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Freelencer_ID" Type="Int32" />
+          <Property Name="Job_ID" Type="Int32" />
+          <Property Name="isgiven" Type="Int32" />
+          <NavigationProperty Name="Freelencer" Relationship="Self.FK__Applylist__Freel__46B27FE2" FromRole="Applylist" ToRole="Freelencer" />
+          <NavigationProperty Name="Job" Relationship="Self.FK__Applylist__Job_I__47A6A41B" FromRole="Applylist" ToRole="Job" />
+        </EntityType>
         <EntityType Name="Freelencer">
           <Key>
             <PropertyRef Name="f_no" />
@@ -125,6 +195,7 @@ warning 6013: The table/view 'HiredHunters.dbo.manager' does not have a primary 
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isEmailVarified" Type="Int32" />
           <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Applylists" Relationship="Self.FK__Applylist__Freel__46B27FE2" FromRole="Freelencer" ToRole="Applylist" />
         </EntityType>
         <EntityType Name="Job">
           <Key>
@@ -139,7 +210,12 @@ warning 6013: The table/view 'HiredHunters.dbo.manager' does not have a primary 
           <Property Name="isAvailable" Type="Int32" />
           <Property Name="Recruiter_ID" Type="Int32" />
           <Property Name="AskingPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+
           <NavigationProperty Name="Recruiter" Relationship="Self.FK__Job__Recruiter_I__534D60F1" FromRole="Job" ToRole="Recruiter" />
+
+          <NavigationProperty Name="Applylists" Relationship="Self.FK__Applylist__Job_I__47A6A41B" FromRole="Job" ToRole="Applylist" />
+          <NavigationProperty Name="Recruiter" Relationship="Self.FK__Job__Recruiter_I__2A164134" FromRole="Job" ToRole="Recruiter" />
+
         </EntityType>
         <EntityType Name="Recruiter">
           <Key>
@@ -159,7 +235,45 @@ warning 6013: The table/view 'HiredHunters.dbo.manager' does not have a primary 
           <Property Name="pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Jobs" Relationship="Self.FK__Job__Recruiter_I__534D60F1" FromRole="Recruiter" ToRole="Job" />
         </EntityType>
+
         <Association Name="FK__Job__Recruiter_I__534D60F1">
+
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Applylist__Freel__46B27FE2">
+          <End Role="Freelencer" Type="Self.Freelencer" Multiplicity="0..1" />
+          <End Role="Applylist" Type="Self.Applylist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Freelencer">
+              <PropertyRef Name="f_no" />
+            </Principal>
+            <Dependent Role="Applylist">
+              <PropertyRef Name="Freelencer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applylist__Job_I__47A6A41B">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="Applylist" Type="Self.Applylist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="J_no" />
+            </Principal>
+            <Dependent Role="Applylist">
+              <PropertyRef Name="Job_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Job__Recruiter_I__2A164134">
+
           <End Role="Recruiter" Type="Self.Recruiter" Multiplicity="0..1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
           <ReferentialConstraint>
@@ -171,11 +285,29 @@ warning 6013: The table/view 'HiredHunters.dbo.manager' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
         <EntityContainer Name="HiredHuntersEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Freelencers" EntityType="Self.Freelencer" />
           <EntitySet Name="Jobs" EntityType="Self.Job" />
           <EntitySet Name="Recruiters" EntityType="Self.Recruiter" />
           <AssociationSet Name="FK__Job__Recruiter_I__534D60F1" Association="Self.FK__Job__Recruiter_I__534D60F1">
+
+        <EntityContainer Name="HiredHuntersEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applylists" EntityType="Self.Applylist" />
+          <EntitySet Name="Freelencers" EntityType="Self.Freelencer" />
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
+          <EntitySet Name="Recruiters" EntityType="Self.Recruiter" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK__Applylist__Freel__46B27FE2" Association="Self.FK__Applylist__Freel__46B27FE2">
+            <End Role="Freelencer" EntitySet="Freelencers" />
+            <End Role="Applylist" EntitySet="Applylists" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applylist__Job_I__47A6A41B" Association="Self.FK__Applylist__Job_I__47A6A41B">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="Applylist" EntitySet="Applylists" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Job__Recruiter_I__2A164134" Association="Self.FK__Job__Recruiter_I__2A164134">
+
             <End Role="Recruiter" EntitySet="Recruiters" />
             <End Role="Job" EntitySet="Jobs" />
           </AssociationSet>
@@ -204,7 +336,21 @@ warning 6013: The table/view 'HiredHunters.dbo.manager' does not have a primary 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+
         <EntityContainerMapping StorageEntityContainer="HiredHuntersModelStoreContainer" CdmEntityContainer="HiredHuntersEntities3">
+
+        <EntityContainerMapping StorageEntityContainer="HiredHuntersModelStoreContainer" CdmEntityContainer="HiredHuntersEntities1">
+          <EntitySetMapping Name="Applylists">
+            <EntityTypeMapping TypeName="HiredHuntersModel.Applylist">
+              <MappingFragment StoreEntitySet="Applylist">
+                <ScalarProperty Name="apply_no" ColumnName="apply_no" />
+                <ScalarProperty Name="Freelencer_ID" ColumnName="Freelencer_ID" />
+                <ScalarProperty Name="Job_ID" ColumnName="Job_ID" />
+                <ScalarProperty Name="isgiven" ColumnName="isgiven" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+
           <EntitySetMapping Name="Freelencers">
             <EntityTypeMapping TypeName="HiredHuntersModel.Freelencer">
               <MappingFragment StoreEntitySet="Freelencer">
@@ -275,6 +421,13 @@ warning 6013: The table/view 'HiredHunters.dbo.manager' does not have a primary 
               <MappingFragment StoreEntitySet="Manange">
                 <ScalarProperty Name="pass" ColumnName="pass" />
                 <ScalarProperty Name="username" ColumnName="username" />
+
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -25,10 +25,12 @@ namespace HiredHunters.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Applylist> Applylists { get; set; }
         public virtual DbSet<Freelencer> Freelencers { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<Recruiter> Recruiters { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Manange> Mananges { get; set; }
+
     }
 }
