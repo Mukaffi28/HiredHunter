@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "All Jobs";
+    Layout = "~/Views/Shared/Admin_layout.cshtml";
 }
 
 <h2>All Jobs</h2>
@@ -91,7 +92,7 @@
                         { @Html.ActionLink("Approve", "Approve", new { id = item.J_no }, new { @class = "btn btn - primary" })
                         @Html.ActionLink("Edit", "Edit", new { id = item.J_no }, new { @class = "btn btn - primary" })
                         @Html.ActionLink("Details", "Details", new { id = item.J_no }, new { @class = "btn btn - primary" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.J_no }, new { @class = "btn btn - primary" })
+                        @Html.ActionLink("Delete", "Dlt", new { id = item.J_no }, new { @class = "btn btn - primary" })
 
                     }
 
@@ -99,7 +100,7 @@
                     {@Html.ActionLink("DisApprove", "DisApprove", new { id = item.J_no }, new { @class = "btn btn - primary" })
                     @Html.ActionLink("Edit", "Edit", new { id = item.J_no }, new { @class = "btn btn - primary" })
                     @Html.ActionLink("Details", "Details", new { id = item.J_no }, new { @class = "btn btn - primary" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.J_no }, new { @class = "btn btn - primary" })
+                    @Html.ActionLink("Delete", "Dlt", new { id = item.J_no }, new { @class = "btn btn - primary" } )
 
 
 

@@ -4,13 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HiredHuntersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Admin">
-          <Property Name="Name" Type="varchar" MaxLength="100" />
-          <Property Name="username" Type="varchar" MaxLength="50" />
-        </EntityType>-->
+    <Schema Namespace="HiredHuntersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Freelencer">
           <Key>
             <PropertyRef Name="f_no" />
@@ -44,6 +38,19 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
           <Property Name="isAvailable" Type="int" />
           <Property Name="Recruiter_ID" Type="int" />
           <Property Name="AskingPrice" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'HiredHunters.dbo.manager' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="manager">
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="pass" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="Manange">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Recruiter">
           <Key>
@@ -87,6 +94,7 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
         <EntityContainer Name="HiredHuntersModelStoreContainer">
           <EntitySet Name="Freelencer" EntityType="Self.Freelencer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manange" EntityType="Self.Manange" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recruiter" EntityType="Self.Recruiter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Job__Recruiter_I__534D60F1" Association="Self.FK__Job__Recruiter_I__534D60F1">
@@ -94,8 +102,7 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
             <End Role="Job" EntitySet="Job" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HiredHuntersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -152,16 +159,6 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
           <Property Name="pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Jobs" Relationship="Self.FK__Job__Recruiter_I__534D60F1" FromRole="Recruiter" ToRole="Job" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <Association Name="FK__Job__Recruiter_I__534D60F1">
           <End Role="Recruiter" Type="Self.Recruiter" Multiplicity="0..1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
@@ -174,22 +171,40 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HiredHuntersEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HiredHuntersEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Freelencers" EntityType="Self.Freelencer" />
           <EntitySet Name="Jobs" EntityType="Self.Job" />
           <EntitySet Name="Recruiters" EntityType="Self.Recruiter" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK__Job__Recruiter_I__534D60F1" Association="Self.FK__Job__Recruiter_I__534D60F1">
             <End Role="Recruiter" EntitySet="Recruiters" />
             <End Role="Job" EntitySet="Jobs" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="HiredHuntersModel.sysdiagram" />
+          <EntitySet Name="Mananges" EntityType="HiredHuntersModel.Manange" />
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Manange">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HiredHuntersModelStoreContainer" CdmEntityContainer="HiredHuntersEntities2">
+        <EntityContainerMapping StorageEntityContainer="HiredHuntersModelStoreContainer" CdmEntityContainer="HiredHuntersEntities3">
           <EntitySetMapping Name="Freelencers">
             <EntityTypeMapping TypeName="HiredHuntersModel.Freelencer">
               <MappingFragment StoreEntitySet="Freelencer">
@@ -247,11 +262,19 @@ warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary ke
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="HiredHuntersModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mananges">
+            <EntityTypeMapping TypeName="HiredHuntersModel.Manange">
+              <MappingFragment StoreEntitySet="Manange">
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="username" ColumnName="username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

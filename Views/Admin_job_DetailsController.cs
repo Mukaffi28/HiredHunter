@@ -38,6 +38,18 @@ namespace HiredHunters.Views
             return RedirectToAction("Index");
 
         }
+
+        public ActionResult Dlt(int? id)
+        {
+        
+
+            var job = db.Jobs.Find(id);
+            db.Jobs.Remove(job);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+
+        }
         // GET: Admin_job_Details/Details/5
         public ActionResult Details(int? id)
         {
@@ -50,6 +62,7 @@ namespace HiredHunters.Views
             {
                 return HttpNotFound();
             }
+
             return View(job);
         }
 
@@ -110,7 +123,6 @@ namespace HiredHunters.Views
             ViewBag.Recruiter_ID = new SelectList(db.Recruiters, "r_no", "Recruiter_ID", job.Recruiter_ID);
             return View(job);
         }
-
         // GET: Admin_job_Details/Delete/5
         public ActionResult Delete(int? id)
         {

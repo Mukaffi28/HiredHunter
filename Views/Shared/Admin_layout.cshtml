@@ -29,7 +29,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    
+
     <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -52,7 +52,7 @@
                             <!-- Logo -->
                             <div class="logo">
                                 @*<h2>HiredHunter</h2>*@
-                                <a href="~/Home/Index"><img src="~/assets/img/logo/logo1.png" alt=""></a>
+                                <a href="~/Admin_job_Details/Index"><img src="~/assets/img/logo/logo1.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9">
@@ -61,9 +61,10 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="~/Home/Index">Home</a></li>
-                                            <li><a href="~/Jobs/Index">Find a Jobs </a></li>
-                                            <li><a href="about.html">About</a></li>
+                                            <li><a href="~/AdminFreelencers/Index">All Freelancer </a></li>
+                                            @*<a href="~/Views/Admin_job_Details/Index.cshtml">~/Views/Admin_job_Details/Index.cshtml</a>*@
+                                            <li><a href="~/Admin_job_Details/Index">All Job </a></li>
+                                            <li><a href="~/AdminRecruiters/Index">All Recruiter </a></li>
                                             <li>
                                                 <a href="#">Page</a>
                                                 <ul class="submenu">
@@ -74,14 +75,11 @@
                                                 </ul>
                                             </li>
                                             <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="~/Admin_Mananges/logout">Log out!!!</a></li>
                                         </ul>
                                     </nav>
                                 </div>
-                                <!-- Header-btn -->
-                                <div class="header-btn d-none f-right d-lg-block">
-                                    <a class="btn head-btn1" href="~/Home/SignUP_Index">Register</a>
-                                    <a href="~/Home/Login_Index" class="btn head-btn2">Login</a>
-                                </div>
+                            
 
                             </div>
                         </div>
@@ -273,3 +271,4 @@
     <script src="~/assets/js/main.js"></script>
 </body>
 </html>
+

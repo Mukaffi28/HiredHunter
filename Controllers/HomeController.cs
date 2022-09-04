@@ -11,6 +11,12 @@ namespace HiredHunters.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["r_no"] != null)
+            {
+                ViewBag.loggedIn = "User already logged in";
+                return RedirectToAction("Index", "Recruiter");
+
+            }
             return View();
         }
 
@@ -30,17 +36,30 @@ namespace HiredHunters.Controllers
 
         public ActionResult SignUP_Index()
         {
-            return View();
+            if (Session["r_no"] != null)
+            {
+                ViewBag.loggedIn = "User already logged in";
+                return RedirectToAction("Index", "Recruiter");
+
+            }else { return View(); }
         }
         [HttpGet]
         public ActionResult Login_Index()
         {
+            if (Session["r_no"] != null)
+            {
+                ViewBag.loggedIn = "User already logged in";
+                return RedirectToAction("Index", "Recruiter");
+
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult Login_Index(FormCollection collection)
         {
+            
+            
             string btn=collection["flexRadioDefault"].ToString();
             string mail = collection["Email"];
             string p = collection["pass"];
