@@ -35,7 +35,10 @@
 
         <!-- Hero Area Start-->
         <div class="slider-area ">
-            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
+            @* @Url.Content("~/path/file.htm")*@
+            @*  <img src="~/assets/img/blog/learn_about_bg.png" />*@
+           
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background=" @Url.Content("~/assets/img/hero/alljob.png")">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
@@ -257,53 +260,66 @@
                                 @foreach (var item in Model)
                                 {
 
-
-
-                                    int daysLeft = 0;
-                                    if (item.CreateDate.HasValue)
+                                    if (item.isAvailable == 1)
                                     {
-                                        DateTime CreateDate = (DateTime)item.CreateDate;
-                                        daysLeft = (DateTime.Today - CreateDate).Days;
-                                    }
-                                    string availablity;
+                                        int daysLeft = 0;
+                                        if (item.CreateDate.HasValue)
+                                        {
+                                            DateTime CreateDate = (DateTime)item.CreateDate;
+                                            daysLeft = (DateTime.Today - CreateDate).Days;
+                                        }
+                                        string availablity;
 
-                                    if (item.isAvailable == 0)
-                                    {
+                                        if (item.isAvailable == 0)
+                                        {
 
-                                        availablity = "Not Available";
+                                            availablity = "Not Available";
 
-                                    }
-                                    else
-                                    {
-                                        availablity = "Available";
+                                        }
+                                        else
+                                        {
+                                            availablity = "Available";
 
-                                    }
+                                        }
 
-                                    <div class="single-job-items mb-30">
+                                        <div class="single-job-items mb-30">
 
-                                        <div class="job-items">
+                                            <div class="job-items">
 
-                                            <div class="job-tittle job-tittle2">
-                                                <a href="#">
-                                                    <h4> Job Title: @Html.DisplayFor(modelItem => item.Title)</h4>
-                                                </a>
-                                                <ul>
-                                                    <li>RecruiterID: R @Html.DisplayFor(modelItem => item.Recruiter_ID)</li>
-                                                    <li><i class="fas fa-map-marker-alt"></i>Location:@Html.DisplayFor(modelItem => item.Locations)</li>
-                                                    <li>Asking Price: $@Html.DisplayFor(modelItem => item.AskingPrice)</li>
-                                                    <li>Availablity:@availablity</li>
-                                                </ul>
+                                                <div class="job-tittle job-tittle2">
+                                                    <a href="#">
+                                                        <h4> Job Title: @Html.ActionLink(item.Title, "Edit", new { id = item.J_no }) </h4>
+                                                    </a>
+                                                    <ul>
+                                                        <li>RecruiterID: R @Html.DisplayFor(modelItem => item.Recruiter_ID)</li>
+                                                        <li><i class="fas fa-map-marker-alt"></i>Location:@Html.DisplayFor(modelItem => item.Locations)</li>
+                                                        <li>Asking Price: $@Html.DisplayFor(modelItem => item.AskingPrice)</li>
+                                                        <li>Availablity:@availablity</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span></span>
+                                            <div class="items-link items-link2 f-right">
+                                                
+                                                <span>@daysLeft Days ago</span>
                                             </div>
                                         </div>
+
+                                    }
+                                    
+
+
+
                                         <span></span>
                                         <div class="items-link items-link2 f-right">
-                                            <a href="#">Bid Now</a>
+                                           
+                                            @Html.ActionLink("Apply now", "Apply", new { id = item.J_no }, new { @class = "btn btn - primary" })
                                             <span>@daysLeft Days ago</span>
                                         </div>
                                     </div>
                                 }
                                 <!-- single-job-content -->
-                        </section>
+</section>
                         <!-- Featured_job_end -->
                     </div>
                 </div>
