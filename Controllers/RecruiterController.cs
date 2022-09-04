@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace HiredHunters.Controllers
 {
+    [System.Web.Mvc.OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class RecruiterController : Controller
     {
         // GET: Recruiter
@@ -85,7 +86,7 @@ namespace HiredHunters.Controllers
         }
 
         //Profile Details
-        private string p;
+       // private string p;
         [HttpGet]
         public ActionResult RecruiterProfile()
         {
@@ -95,14 +96,14 @@ namespace HiredHunters.Controllers
                 {
 
                     Recruiter rec=dc.Recruiters.Find(Session["r_no"]);
-                    p = rec.pass;
+                  //  p = rec.pass;
                     if (rec == null)
                     {
                         return HttpNotFound();
                     }
                     return View(rec);
                 }
-                return View();
+               // return View();
             }
             else
             {
@@ -112,28 +113,38 @@ namespace HiredHunters.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RecruiterProfile([Bind(Include = "r_no,Recruiter_ID,FirstName,LastName,Profilepic,PhoneNumber,Email,JoiningDate,R_address,Rating,Total_job_Posted")] Recruiter recruiter)
+        public ActionResult RecruiterProfile([Bind(Include = "Recruiter_ID, FirstName, LastName,  PhoneNumber, JoiningDate, R_address, Rating, Total_job_Posted, pass")] Recruiter recruiter)
         {
             if(Session["r_no"] != null)
             {
-                recruiter.pass = p; 
-                if (ModelState.IsValid)
-                {
-                    using(HiredHuntersEntities1 db = new HiredHuntersEntities1())
-                    {
-                        db.Entry(recruiter).State = EntityState.Modified;
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                    
-                }
+
+                HiredHuntersEntities1 db = new HiredHuntersEntities1();
+                string q = "Update Recruiter set FirstName='" + recruiter.FirstName + "', LastName='"+recruiter.LastName+ "', PhoneNumber='" + recruiter.PhoneNumber + "', JoiningDate='" + recruiter.JoiningDate + "', R_address='" + recruiter.R_address + "' where Recruiter_ID='" + recruiter.Recruiter_ID+"'";
+                //var user = db.Recruiters.SqlQuery(q).FirstOrDefault();
+                var user=db.Recruiters.SqlQuery(q).FirstOrDefaultAsync();
+                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                //string p=recruiter.pass;
+
+                //if (ModelState.IsValid)
+                //{
+                //    var user = db.Recruiters.Find(Session["r_no"]);
+                //    if(string.Compare(Crypto.Hash(p), user.pass) == 0)
+                //    {
+                //        db.Entry(recruiter).State = System.Data.Entity.EntityState.Modified;
+
+                //        db.SaveChanges();
+                //        return RedirectToAction("Index");
+                //    }
+
+                //}
                 return View(recruiter);
             }
             else
             {
                 return RedirectToAction("Login_Index", "Home");
             }
-            
+     
         }
         public ActionResult PostAJob()
         {
@@ -150,14 +161,24 @@ namespace HiredHunters.Controllers
 
         public ActionResult MyJob()
         {
-            return View();
+            HiredHuntersEntities1 db = new HiredHuntersEntities1();
+            if (Session["r_no"] != null)
+            {
+                var jobs = db.Jobs.Include(j => j.Recruiter);
+                return View(jobs.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login_Index", "Home");
+            }
+            
         }
 
         public ActionResult BringATalent()
         {
             return View();
         }
-
+        [System.Web.Mvc.OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult LogOut()
         {
             if (Session["r_no"] != null)
@@ -173,5 +194,13 @@ namespace HiredHunters.Controllers
         }
 
        
+        //search Freelancer
+        //HiredHuntersEntities1 db = new HiredHuntersEntities1();
+        //public ActionResult Search(string searching)
+        //{
+        //    db.Freelencers.Where(x => x.username.Contains(searching) || searching == null);
+        //    return View();
+        //}
+
     }
 }

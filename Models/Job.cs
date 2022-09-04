@@ -14,6 +14,12 @@ namespace HiredHunters.Models
     
     public partial class Job
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Job()
+        {
+            this.Applylists = new HashSet<Applylist>();
+        }
+    
         public int J_no { get; set; }
         public string Job_ID { get; set; }
         public string Title { get; set; }
@@ -24,6 +30,8 @@ namespace HiredHunters.Models
         public Nullable<int> Recruiter_ID { get; set; }
         public string AskingPrice { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Applylist> Applylists { get; set; }
         public virtual Recruiter Recruiter { get; set; }
     }
 }
