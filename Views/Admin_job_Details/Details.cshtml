@@ -2,20 +2,20 @@
 
 @{
     ViewBag.Title = "Details";
+
 }
 
-<h2>Details</h2>
 <h2>Details</h2>
 <main>
 
     <!-- Hero Area Start-->
     <div class="slider-area ">
-        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="~assets/img/hero/about.jpg">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>@Html.DisplayFor(model => model.Title)</h2>
+                            <h2>UI/UX Designer</h2>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                             <div class="company-img company-img-details">
                                 <a href="#"> <img src="~/assets/img/icon/job-list1.png" />
                             </div>
-
+                            
                             <div class="job-tittle">
                                 <a href="#">
                                     <h4>@Html.DisplayFor(model => model.Title)</h4>
@@ -95,16 +95,16 @@
                             <h4>Job Overview</h4>
                         </div>
                         <ul>
-                            @{ DateTime CreateDate = (DateTime)Model.CreateDate;
+                            @{   DateTime CreateDate = (DateTime)Model.CreateDate;
 
                                 var longDateValue = CreateDate.ToLongDateString();
 
-                                <li>Posted date : <span>  @longDateValue </span></li>
-                                <li>Location : <span>@Html.DisplayFor(model => model.Locations)</span></li>
+                            <li>Posted date : <span>  @longDateValue </span></li>
+                            <li>Location : <span>@Html.DisplayFor(model => model.Locations)</span></li>
 
-                                <li>Job nature : <span>Full time</span></li>
-                                <li>Salary :  <span> @Html.DisplayFor(model => model.AskingPrice) $USD</span></li>
-                            }
+                            <li>Job nature : <span>Full time</span></li>
+                            <li>Salary :  <span> @Html.DisplayFor(model => model.AskingPrice) $USD</span></li>
+                                }
                         </ul>
                         <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
@@ -130,3 +130,77 @@
     <!-- job post company End -->
 
 </main>
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Job_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Locations)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Locations)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isAvailable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isAvailable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AskingPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AskingPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recruiter.Recruiter_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recruiter.Recruiter_ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.J_no }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
