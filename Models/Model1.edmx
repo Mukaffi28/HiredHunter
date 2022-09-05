@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
+
     <Schema Namespace="HiredHuntersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+
+      <Schema Namespace="HiredHuntersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'HiredHunters.dbo.Admin' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Admin">
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+
         <EntityType Name="Applylist">
           <Key>
             <PropertyRef Name="apply_no" />
@@ -63,7 +73,7 @@
             <PropertyRef Name="username" />
           </Key>
           <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="pass" Type="varchar" MaxLength="50" />
+          <Property Name="pass" Type="varchar" MaxLength="55" />
         </EntityType>
         <EntityType Name="Recruiter">
           <Key>
@@ -82,6 +92,7 @@
           <Property Name="Total_job_Posted" Type="int" />
           <Property Name="pass" Type="varchar" MaxLength="100" />
         </EntityType>
+
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -93,6 +104,8 @@
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK__Applylist__Freel__5CD6CB2B">
+
+        <Association Name="FK__Applylist__Freel__46B27FE2">
           <End Role="Freelencer" Type="Self.Freelencer" Multiplicity="0..1" />
           <End Role="Applylist" Type="Self.Applylist" Multiplicity="*" />
           <ReferentialConstraint>
@@ -117,6 +130,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Job__Recruiter_I__534D60F1">
+
+        <Association Name="FK__Job__Recruiter_I__2A164134">
           <End Role="Recruiter" Type="Self.Recruiter" Multiplicity="0..1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
           <ReferentialConstraint>
@@ -136,7 +151,9 @@
           <EntitySet Name="Manange" EntityType="Self.Manange" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recruiter" EntityType="Self.Recruiter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Applylist__Freel__5CD6CB2B" Association="Self.FK__Applylist__Freel__5CD6CB2B">
+          <AssociationSet Name="FK__Applylist__Freel__5CD6CB2B" Association="Self.FK__Applylist__Freel__5CD6CB2B"
+          <AssociationSet Name="FK__Applylist__Freel__46B27FE2" Association="Self.FK__Applylist__Freel__46B27FE2">
+
             <End Role="Freelencer" EntitySet="Freelencer" />
             <End Role="Applylist" EntitySet="Applylist" />
           </AssociationSet>
@@ -144,12 +161,15 @@
             <End Role="Job" EntitySet="Job" />
             <End Role="Applylist" EntitySet="Applylist" />
           </AssociationSet>
+
           <AssociationSet Name="FK__Job__Recruiter_I__534D60F1" Association="Self.FK__Job__Recruiter_I__534D60F1">
+          <AssociationSet Name="FK__Job__Recruiter_I__2A164134" Association="Self.FK__Job__Recruiter_I__2A164134">
             <End Role="Recruiter" EntitySet="Recruiter" />
             <End Role="Job" EntitySet="Job" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HiredHuntersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -200,6 +220,8 @@
           <Property Name="AskingPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Applylists" Relationship="Self.FK__Applylist__Job_I__5DCAEF64" FromRole="Job" ToRole="Applylist" />
           <NavigationProperty Name="Recruiter" Relationship="Self.FK__Job__Recruiter_I__534D60F1" FromRole="Job" ToRole="Recruiter" />
+          <NavigationProperty Name="Applylists" Relationship="Self.FK__Applylist__Job_I__47A6A41B" FromRole="Job" ToRole="Applylist" />
+          <NavigationProperty Name="Recruiter" Relationship="Self.FK__Job__Recruiter_I__2A164134" FromRole="Job" ToRole="Recruiter" />
         </EntityType>
         <EntityType Name="Manange">
           <Key>
@@ -207,6 +229,7 @@
           </Key>
           <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Recruiter">
           <Key>
@@ -235,6 +258,7 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Jobs" Relationship="Self.FK__Job__Recruiter_I__2A164134" FromRole="Recruiter" ToRole="Job" />
         </EntityType>
         <Association Name="FK__Applylist__Freel__5CD6CB2B">
           <End Role="Freelencer" Type="Self.Freelencer" Multiplicity="0..1" />
@@ -261,6 +285,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Job__Recruiter_I__534D60F1">
+        <Association Name="FK__Job__Recruiter_I__2A164134">
           <End Role="Recruiter" Type="Self.Recruiter" Multiplicity="0..1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
           <ReferentialConstraint>
@@ -280,6 +305,7 @@
           <EntitySet Name="Recruiters" EntityType="Self.Recruiter" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK__Applylist__Freel__5CD6CB2B" Association="Self.FK__Applylist__Freel__5CD6CB2B">
+          <AssociationSet Name="FK__Applylist__Freel__46B27FE2" Association="Self.FK__Applylist__Freel__46B27FE2">
             <End Role="Freelencer" EntitySet="Freelencers" />
             <End Role="Applylist" EntitySet="Applylists" />
           </AssociationSet>
@@ -287,6 +313,7 @@
             <End Role="Job" EntitySet="Jobs" />
             <End Role="Applylist" EntitySet="Applylists" />
           </AssociationSet>
+
           <AssociationSet Name="FK__Job__Recruiter_I__534D60F1" Association="Self.FK__Job__Recruiter_I__534D60F1">
             <End Role="Recruiter" EntitySet="Recruiters" />
             <End Role="Job" EntitySet="Jobs" />
@@ -303,6 +330,11 @@
           <Property Name="Phonenumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Con_Message" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+          <AssociationSet Name="FK__Job__Recruiter_I__2A164134" Association="Self.FK__Job__Recruiter_I__2A164134">
+            <End Role="Recruiter" EntitySet="Recruiters" />
+            <End Role="Job" EntitySet="Jobs" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -381,6 +413,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="HiredHuntersModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -403,6 +436,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HiredHunters.Models.Job>
+@model IEnumerable<HiredHunters.Models.Job>
 
 @{
     ViewBag.Title = "All Jobs";
@@ -6,7 +6,7 @@
 }
 
 <h2>All Jobs</h2>
-<p style="font-size: 50px; text-align: center;" >All Jobs</p>
+<p style="font-size: 50px; text-align: center;">All Jobs</p>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -43,23 +43,23 @@
         </tr>
     </thead>
     <tbody>
-        
 
-            @foreach (var item in Model)
+
+        @foreach (var item in Model)
+        {
+            string availablity;
+
+            if (item.isAvailable == 0)
             {
-                string availablity;
 
-                if (item.isAvailable == 0)
-                {
+                availablity = "Not Approved";
 
-                    availablity = "Not Approved";
+            }
+            else
+            {
+                availablity = "Available";
 
-                }
-                else
-                {
-                    availablity = "Available";
-
-                }
+            }
 
 
             <tr class="table-primary">
@@ -100,7 +100,7 @@
                     {@Html.ActionLink("DisApprove", "DisApprove", new { id = item.J_no }, new { @class = "btn btn - primary" })
                     @Html.ActionLink("Edit", "Edit", new { id = item.J_no }, new { @class = "btn btn - primary" })
                     @Html.ActionLink("Details", "Details", new { id = item.J_no }, new { @class = "btn btn - primary" })
-                    @Html.ActionLink("Delete", "Dlt", new { id = item.J_no }, new { @class = "btn btn - primary" } )
+                    @Html.ActionLink("Delete", "Dlt", new { id = item.J_no }, new { @class = "btn btn - primary" })
 
 
 
@@ -112,4 +112,62 @@
             
           
         </tbody>
+
+
+        <tr>
+            <th scope="row">Default</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr class="table-primary">
+            <th scope="row">Primary</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr class="table-secondary">
+            <th scope="row">Secondary</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr class="table-success">
+            <th scope="row">Success</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr class="table-danger">
+            <th scope="row">Danger</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr class="table-warning">
+            <th scope="row">Warning</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr class="table-info">
+            <th scope="row">Info</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr class="table-light">
+            <th scope="row">Light</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr class="table-dark">
+            <th scope="row">Dark</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+    </tbody>
+
 </table>
