@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<HiredHunters.Models.Job>
 @{
     ViewBag.Title = "MyJob";
+    Layout = "~/Views/Recruiter/_LayoutRecruiter.cshtml";
 }
 <!-- CSS here -->
 <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
@@ -34,7 +35,7 @@
 
                     <div class="job-tittle job-tittle2">
                         <a href="#">
-                            <h4> Job Title: @Html.DisplayFor(modelItem => item.Title)</h4>
+                            <h4> Job Title: @Html.ActionLink(item.Title, "JobDetails", new { id = item.J_no })</h4>
                         </a>
                         <ul>
 
