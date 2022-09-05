@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 namespace HiredHunters.Controllers
 {
@@ -174,10 +175,51 @@ namespace HiredHunters.Controllers
             
         }
 
-        public ActionResult BringATalent()
+        public ActionResult JobDetails(int? id)
         {
-            return View();
+            if (Session["r_no"] != null)
+            {
+                 HiredHuntersEntities1 db = new HiredHuntersEntities1();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Job job = db.Jobs.Find(id);
+                if (job == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(job);
+            }
+            else
+            {
+                return RedirectToAction("Login_Index", "Home");
+            }
+
         }
+        public ActionResult applicantDetails(int? id)
+        {
+
+            if (Session["r_no"] != null)
+            {
+                HiredHuntersEntities1 db = new HiredHuntersEntities1();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Applylist apply = db.Applylists.Where(x => x.Job_ID == id).FirstOrDefault();
+                if (apply == null)
+                {
+                    return HttpNotFound();
+                }
+                return RedirectToAction("Index","Applist");
+            }
+            else
+            {
+                return RedirectToAction("Login_Index", "Home");
+            }
+        }
+        
         [System.Web.Mvc.OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult LogOut()
         {
@@ -193,7 +235,18 @@ namespace HiredHunters.Controllers
            // return View();
         }
 
-       
+       public void Approve(int?id)
+        {
+            if (Session["r_no"] != null)
+            {
+
+                HiredHuntersEntities1 db = new HiredHuntersEntities1();
+                Applylist rec = db.Applylists.Find(id);
+                rec.isgiven = 1;
+                db.SaveChanges();
+            }
+            
+        }
         //search Freelancer
         //HiredHuntersEntities1 db = new HiredHuntersEntities1();
         //public ActionResult Search(string searching)
