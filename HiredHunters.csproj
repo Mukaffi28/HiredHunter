@@ -141,6 +141,9 @@
     <Compile Include="Models\Applylist.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContractUs.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Extended\Freelencer.cs" />
     <Compile Include="Models\Extended\Recruiter.cs" />
     <Compile Include="Models\Freelencer.cs">
@@ -174,7 +177,9 @@
     <Compile Include="Views\AdminRecruitersController.cs" />
     <Compile Include="Views\Admin_job_DetailsController.cs" />
     <Compile Include="Views\Admin_ManangesController.cs" />
+
     <Compile Include="Views\ApplylistsController.cs" />
+
     <Compile Include="Views\ProfileFreeController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -481,6 +486,13 @@
     <Content Include="Views\Shared\logAdmin.cshtml" />
     <Content Include="Views\Freelancer\Search.cshtml" />
     <Content Include="Views\Recruiter\MyJob.cshtml" />
+
+    <Content Include="Views\ContractUs\Create.cshtml" />
+    <Content Include="Views\ContractUs\Delete.cshtml" />
+    <Content Include="Views\ContractUs\Details.cshtml" />
+    <Content Include="Views\ContractUs\Edit.cshtml" />
+    <Content Include="Views\ContractUs\Index.cshtml" />
+
     <Content Include="Views\Recruiter\JobDetails.cshtml" />
     <Content Include="Views\Recruiter\applicantDetails.cshtml" />
     <Content Include="Views\Applylists\Create.cshtml" />
@@ -489,6 +501,7 @@
     <Content Include="Views\Applylists\Edit.cshtml" />
     <Content Include="Views\Applylists\Index.cshtml" />
     <Content Include="Views\Applylists\Approve.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

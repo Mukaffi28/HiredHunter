@@ -4,15 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+
+      <Diagram DiagramId="dea60178146d46bd8b0b2b558dc53891" Name="Diagram1">
+
       <Diagram DiagramId="266fe127dc9242919f9f4c61cbe8fe75" Name="Diagram1">
+
         <EntityTypeShape EntityType="HiredHuntersModel.Applylist" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HiredHuntersModel.Freelencer" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HiredHuntersModel.Freelencer" Width="1.5" PointX="12.5" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HiredHuntersModel.Job" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HiredHuntersModel.Manange" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HiredHuntersModel.Recruiter" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+
+        <EntityTypeShape EntityType="HiredHuntersModel.sysdiagram" Width="1.5" PointX="3.125" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="HiredHuntersModel.FK__Applylist__Freel__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="HiredHuntersModel.FK__Applylist__Job_I__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="HiredHuntersModel.FK__Job__Recruiter_I__534D60F1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HiredHuntersModel.ContractUs" Width="1.5" PointX="8.75" PointY="4.25" />
+
         <AssociationConnector Association="HiredHuntersModel.FK__Applylist__Freel__46B27FE2" ManuallyRouted="false" />
         <AssociationConnector Association="HiredHuntersModel.FK__Applylist__Job_I__47A6A41B" ManuallyRouted="false" />
         <AssociationConnector Association="HiredHuntersModel.FK__Job__Recruiter_I__2A164134" ManuallyRouted="false" />
+
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

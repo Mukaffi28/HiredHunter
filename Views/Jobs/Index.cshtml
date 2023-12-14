@@ -300,7 +300,8 @@
                                             </div>
                                             <span></span>
                                             <div class="items-link items-link2 f-right">
-                                                
+
+                                                @Html.ActionLink("Apply now", "Apply", new { id = item.J_no }, new { @class = "btn " })
                                                 <span>@daysLeft Days ago</span>
                                             </div>
                                         </div>
@@ -309,6 +310,10 @@
 
 
 
+
+
+                                        
+                                }
 
                                         <span></span>
                                         <div class="items-link items-link2 f-right">
@@ -319,6 +324,7 @@
                                    
                                 } 
                             
+
                                 <!-- single-job-content -->
                             </section>
                         <!-- Featured_job_end -->

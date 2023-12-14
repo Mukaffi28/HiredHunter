@@ -7,6 +7,9 @@ using System.Web.Mvc;
 
 namespace HiredHunters.Controllers
 {
+
+   
+
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -17,6 +20,9 @@ namespace HiredHunters.Controllers
                 return RedirectToAction("Index", "Recruiter");
 
             }
+
+
+
             return View();
         }
 
@@ -31,8 +37,27 @@ namespace HiredHunters.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return RedirectToAction("Contact", "Home");
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Contact([Bind(Include = "apply_no,Full_name,Email_Address,Phonenumber,Con_Message")] ContractUs contractUs)
+        {
+            HiredHuntersEntities1 db = new HiredHuntersEntities1();
+
+            if (ModelState.IsValid)
+            {
+                db.ContractUs.Add(contractUs);
+                db.SaveChanges();
+                return RedirectToAction("Contact","Home");
+            }
+
+            return View(contractUs);
+        }
+
+
 
         public ActionResult SignUP_Index()
         {

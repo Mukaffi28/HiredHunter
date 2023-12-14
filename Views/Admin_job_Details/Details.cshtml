@@ -5,7 +5,7 @@
 
 }
 
-<h2>Details</h2>
+
 <main>
 
     <!-- Hero Area Start-->
@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>UI/UX Designer</h2>
+                            <h2>@Html.DisplayFor(model => model.Title)</h2>
                         </div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                                 }
                         </ul>
                         <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
+                         
                         </div>
                     </div>
                     <div class="post-details4  mb-50">
@@ -130,77 +130,3 @@
     <!-- job post company End -->
 
 </main>
-<div>
-    <h4>Job</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Job_ID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Job_ID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Details)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Details)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Locations)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Locations)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isAvailable)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isAvailable)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AskingPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AskingPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Recruiter.Recruiter_ID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Recruiter.Recruiter_ID)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.J_no }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
